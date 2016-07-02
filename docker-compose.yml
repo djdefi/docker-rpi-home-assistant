@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  hass:
+    build: .
+    expose:
+      - 8123
+    volumes:
+      - ./data:/data
