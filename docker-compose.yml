@@ -8,6 +8,12 @@ services:
     volumes:
       - ./data:/data
       - /etc/localtime:/etc/localtime:ro
-    network_mode: "host"
     environment:
       - TZ=America/Los_Angeles
+      - VIRTUAL_HOST=defiha.duckdns.org
+      - LETSENCRYPT_HOST=defiha.duckdns.org
+      - LETSENCRYPT_EMAIL=djdefi@gmail.com
+networks:
+  default:
+    external:
+      name: nginx-proxy    
