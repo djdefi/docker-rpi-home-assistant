@@ -7,7 +7,7 @@ RUN sudo apt-get update && \
     net-tools nmap cython3 libudev-dev libglib2.0-dev build-essential && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD https://raw.githubusercontent.com/home-assistant/home-assistant/dev/requirements_all.txt
+ADD https://raw.githubusercontent.com/home-assistant/home-assistant/dev/requirements_all.txt requirements_all.txt
 
 RUN pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r requirements_all.txt && \
