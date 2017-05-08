@@ -10,7 +10,7 @@ RUN sudo apt-get update && \
 ADD https://raw.githubusercontent.com/home-assistant/home-assistant/dev/requirements_all.txt requirements_all.txt
 
 RUN pip3 install --upgrade pip && \
-    pip3 install --no-cache-dir -r requirements_all.txt && \
+    pip3 install -r requirements_all.txt && \
     pip3 install homeassistant && \
     pip3 install netdisco && \
     pip3 install pychromecast==0.7.2 
