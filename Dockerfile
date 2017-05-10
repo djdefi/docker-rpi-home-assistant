@@ -1,19 +1,28 @@
-FROM resin/rpi-raspbian:latest
+FROM resin/rpi-raspbian
 
-RUN sudo apt-get update && \
-    sudo apt-get install -y --no-install-recommends \
-    python3 python3-dev python3-pip python3-netifaces python3-psutil \
-    libxrandr-dev nmap bluetooth libglib2.0-dev libbluetooth-dev libsodium13 \
-    net-tools nmap cython3 libudev-dev libglib2.0-dev build-essential && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Base layer
+ENV ARCH=arm
+ENV CROSS_COMPILE=/usr/bin/
+ENV HA_VERSION 0.44.2
 
-ADD https://raw.githubusercontent.com/home-assistant/home-assistant/dev/requirements_all.txt requirements_all.txt
+RUN apt-get update && \
+    apt-get install --no-install-recommends \
+      build-essential python3-dev python3-pip \
+      libffi-dev libpython-dev libssl-dev \
+      net-tools nmap \
+      iputils-ping \
+      ssh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN pip3 install --upgrade pip && \
-    pip3 install -r requirements_all.txt && \
-    pip3 install homeassistant && \
-    pip3 install netdisco && \
-    pip3 install pychromecast==0.7.2 
+# configuration
+VOLUME /data
+
+# Start Home Assistant
+CMD [ "python3", "-m", "homeassistant", "--config", "/data" ]
+
+# Install Home Assistant
+RUN pip3 install homeassistant==$HA_VERSION
 
 EXPOSE 8123
 
