@@ -3,7 +3,7 @@ FROM resin/rpi-raspbian
 # Base layer
 ENV ARCH=arm
 ENV CROSS_COMPILE=/usr/bin/
-ENV HA_VERSION 0.44.2
+ENV HA_VERSION 0.44.1
 
 RUN apt-get update && \
     apt-get install --no-install-recommends \
