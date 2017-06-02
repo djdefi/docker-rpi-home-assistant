@@ -2,7 +2,7 @@ version: "2"
 
 services:
   hass:
-    build: .
+    image: djdefi/rpi-homeassistant
     ports:
       - 8123:8123
     volumes:
