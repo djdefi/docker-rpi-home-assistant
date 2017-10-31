@@ -10,7 +10,7 @@ CMD [ "python3", "-m", "homeassistant", "--config", "/data" ]
 # Base layer
 ENV ARCH=arm
 ENV CROSS_COMPILE=/usr/bin/
-ENV HA_VERSION 0.44.1
+ENV HA_VERSION 0.56.2
 
 
 RUN apt-get update && \
